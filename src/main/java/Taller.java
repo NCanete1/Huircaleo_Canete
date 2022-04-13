@@ -1,7 +1,7 @@
 public class Taller {
     public static int ncol=24;
     public static double[][] Matriz(int nfilas){
-        double matriz[][];
+        double[][] matriz;
         matriz= new double[nfilas][24];
         return matriz;
     }
@@ -10,8 +10,7 @@ public class Taller {
         double max = 9.5;
         return (Math.random() * (max - min)) + min;
     }
-
-    public static double[][] ValoresMatriz(double matriz[][],int nfilas){
+    public static double[][] ValoresMatriz(double[][] matriz,int nfilas){
         for(int i=0;i<nfilas;i++){ //filas
             for(int j=0;j<ncol;j++){ //columnas
                 matriz[i][j] = Escala();
@@ -100,4 +99,3 @@ public class Taller {
     public static void main(String[] args) {
     }
 }
-
