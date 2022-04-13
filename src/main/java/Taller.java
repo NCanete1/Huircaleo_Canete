@@ -65,7 +65,7 @@ public class Taller {
         return hora;
     }
     public static void CualMayorSismo(){
-        System.out.println("El día "+ MayorSismoDia(dias) +" , a las "+ MayorSismoHora(dias) +" , se registra sismo más intenso, con un valor de "+ MayorSismo(dias) + " en la escala de Richter");
+        System.out.println("El día "+ (int)(MayorSismoDia(dias)+1) +" , a las "+ (int)MayorSismoHora(dias) +" , se registra sismo más intenso, con un valor de "+ MayorSismo(dias) + " en la escala de Richter");
     }
 
     public static void SismosAldia4(){
@@ -78,6 +78,7 @@ public class Taller {
                     veces+=1;
                 }
             }
+            System.out.println("Cantidad de veces de sismos mayor o igual a 4 al dia");
             System.out.println("Dia "+(i+1)+": "+veces);
             veces=0;
         }
@@ -127,6 +128,7 @@ public class Taller {
                     SismosAldia4();
                     break;
                 case 3:
+                    dias=Dias();
                     menu1();
                     break;
                 case 4:
