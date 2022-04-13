@@ -1,9 +1,10 @@
 import java.util.Scanner;
 public class Taller {
     public static int ncol=24;
-    public static double[][] Matriz(int nfilas){
+    public static int dias=Dias();
+    public static double[][] Matriz(int dias){
         double[][] matriz;
-        matriz= new double[nfilas][24];
+        matriz= new double[dias][24];
         return matriz;
     }
     public static double Escala(){
@@ -11,22 +12,20 @@ public class Taller {
         double max = 9.5;
         return (Math.random() * (max - min)) + min;
     }
-    public static double[][] ValoresMatriz(){
-        int nfilas=Dias();
-        double[][] matriz = Matriz(nfilas);
-        for(int i=0;i<nfilas;i++){ //filas
+    public static double[][] ValoresMatriz(int dias){
+        double[][] matriz = Matriz(dias);
+        for(int i=0;i<dias;i++){ //filas
             for(int j=0;j<ncol;j++){ //columnas
                 matriz[i][j] = Escala();
             }
         }
         return matriz;
     }
-    public static double MayorSismo(){
-        int nfilas=2;
+    public static double MayorSismo(int dias){
         double Mayor;
-        double[][] matriz = ValoresMatriz();
+        double[][] matriz = ValoresMatriz(dias);
         Mayor= matriz[0][0];
-        for(int i=0;i<nfilas;i++){ //filas
+        for(int i=0;i<dias;i++){ //filas
             for(int j=0;j<ncol;j++){ //columnas
                 if(matriz[i][j]>Mayor){
                     Mayor= matriz[i][j];
@@ -35,13 +34,12 @@ public class Taller {
         }
         return Mayor;
     }
-    public static double MayorSismoDia(){
-        int nfilas=2;
+    public static double MayorSismoDia(int dias){
         double Mayor;
         double dia=0;
-        double[][] matriz = ValoresMatriz();
+        double[][] matriz = ValoresMatriz(dias);
         Mayor= matriz[0][0];
-        for(int i=0;i<nfilas;i++){ //filas
+        for(int i=0;i<dias;i++){ //filas
             for(int j=0;j<ncol;j++){ //columnas
                 if(matriz[i][j]>Mayor){
                     Mayor= matriz[i][j];
@@ -51,13 +49,12 @@ public class Taller {
         }
         return dia;
     }
-    public static double MayorSismoHora(){
-        int nfilas=2;
+    public static double MayorSismoHora(int dias){
         double Mayor;
         double hora=0;
-        double[][] matriz = ValoresMatriz();
+        double[][] matriz = ValoresMatriz(dias);
         Mayor= matriz[0][0];
-        for(int i=0;i<nfilas;i++){ //filas
+        for(int i=0;i<dias;i++){ //filas
             for(int j=0;j<ncol;j++){ //columnas
                 if(matriz[i][j]>Mayor){
                     Mayor= matriz[i][j];
@@ -68,29 +65,28 @@ public class Taller {
         return hora;
     }
     public static void CualMayorSismo(){
-        System.out.println("El día "+ MayorSismoDia() +" , a las "+ MayorSismoHora() +" , se registra sismo más intenso, con un valor de "+ MayorSismo() + " en la escala de Richter");
+        System.out.println("El día "+ MayorSismoDia(dias) +" , a las "+ MayorSismoHora(dias) +" , se registra sismo más intenso, con un valor de "+ MayorSismo(dias) + " en la escala de Richter");
     }
 
     public static void SismosAldia4(){
-        int nfilas=2;
         int veces=0;
-        double[][] matriz=ValoresMatriz();
+        double[][] matriz=ValoresMatriz(dias);
 
-        for(int i=0;i<nfilas;i++){ //filas
+        for(int i=0;i<dias;i++){ //filas
             for(int j=0;j<ncol;j++){ //columnas
                 if(matriz[i][j]>=4.0){
                     veces+=1;
                 }
-                System.out.println("Dia "+(i+1)+": "+veces);
             }
+            System.out.println("Dia "+(i+1)+": "+veces);
+            veces=0;
         }
     }
 
     public static void SismoMayor4(){
-        int nfilas=2;
-        double[][] matriz=ValoresMatriz();
+        double[][] matriz=ValoresMatriz(dias);
 
-        for(int i=0;i<nfilas;i++){ //filas
+        for(int i=0;i<Dias();i++){ //filas
             for(int j=0;j<ncol;j++){ //columnas
                 if(matriz[i][j]>=4.0){
                     System.out.println(matriz[i][j]);
@@ -112,8 +108,7 @@ public class Taller {
         Scanner leer = new Scanner(System.in);
         boolean salir = false;
         int opcion;
-        Dias();
-        Matriz(Dias());
+        Matriz(dias);
         while(!salir){
 
             System.out.println("[1] Mostrar sismo más intenso");
@@ -129,7 +124,7 @@ public class Taller {
                     CualMayorSismo();
                     break;
                 case 2:
-
+                    SismosAldia4();
                     break;
                 case 3:
                     menu1();
